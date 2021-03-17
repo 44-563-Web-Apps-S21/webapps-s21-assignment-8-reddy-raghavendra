@@ -18,22 +18,19 @@ const server =
             console.log("Queries: " + search_params)
 
             if (req.method === 'GET') {
+                const advices = ["Do something You Are Passionate About.",
+                    "Forgive Yourself.",
+                    "A Setback is Never a Bad Thing.",
+                    "Embrace Failure.",
+                    "Keep Your Eye on the Prize.",
+                    "Never Stop Learning."
+                ]
 
-                console.log("Look for query parameter data: " + search_params.get("data"))
-                let number1 = search_params.get("x");
-                let number2 = search_params.get("y");
-                let roundedNumber1 = Math.round(number1);
-                let roundedNumber2 = Math.round(number2);
-                // Process the queries here
+                let index = Math.floor(Math.random() * advices.length)
                 res.statusCode = 200 //code for OK
                 res.setHeader('Content-Type', 'text/plain')
-                res.write('The math function I have chosen is Math.round(), ')
-                res.write(`Math.round(${number1}) is ${roundedNumber1}`)
-                res.write(`, Math.round(${number2}) is ${roundedNumber2}`)
-                res.write
-
+                res.write(`${advices[index]}`)
                 res.end();
-
             } else {
                 console.log("Status 404")
                 res.statusCode = 404;

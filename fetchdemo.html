@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <title>
+        A demo
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h2>
+        Raghavendra Reddy computes
+    </h2>
+    <div class="container">
+        <div class="form-group row">
+
+            <div class="col-sm-5">
+                <input type="number" id="input1" placeholder="Number1">
+            </div>
+        </div>
+        <div class="form-group row">
+
+            <div class="col-sm-5">
+                <input type="number" id="input2" placeholder="Number2">
+            </div>
+
+        </div>
+
+
+        <div>
+            <br>
+            <button class="btn btn-primary" onclick="remoteCompute()">
+                Remote compute
+            </button>
+        </div>
+        <div id="placeHolder"></div>
+    </div>
+
+    <script>
+        function remoteCompute() {
+            let num1 = document.getElementById("input1").value;
+            let num2 = document.getElementById("input2").value;
+            let url = `http://127.0.0.1:3001?x=${num1}&y=${num2}`
+            fetch(url).then(
+                    (response) => {
+                        return response.text()
+                    }
+                ).then(
+                    (text) => {
+                        document.getElementById("placeHolder").innerHTML = text
+                    }
+                )
+                .catch(
+                    (error) => {
+                        document.getElementById("placeHolder").innerHTML = error
+                    }
+                )
+        }
+    </script>
+</body>
+
+</html>
